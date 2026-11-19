@@ -1,0 +1,16 @@
+services:
+  inventory:
+    build: .
+    ports:
+      - "127.0.0.1:8080:80"
+    volumes:
+      - stockroom:/data
+    environment:
+      COOKIE_SECURE: "${COOKIE_SECURE:-0}"
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  stockroom:
